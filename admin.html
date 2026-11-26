@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Solanki Shoes | Admin Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{--bg:#0b0b0c;--panel:#141416;--panel2:#1b1b1e;--line:#2b2925;--gold:#d5ad62;--gold2:#f0d59b;--text:#f5f1e8;--muted:#9d9a93;--red:#e36c6c;--green:#66c995;--blue:#80a9e8}
+
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:flex;min-height:100vh}.sidebar{width:250px;background:#101011;border-right:1px solid var(--line);padding:24px 15px;position:fixed;inset:0 auto 0 0;overflow:auto;z-index:5}.brand{padding:4px 12px 25px;border-bottom:1px solid var(--line);margin-bottom:20px}.brand b{font-family:'Playfair Display';font-size:22px;letter-spacing:2px;color:var(--gold2)}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:3px;margin-top:5px}.nav-label{font-size:10px;color:#77736c;letter-spacing:2px;padding:15px 12px 8px}.nav button{width:100%;display:flex;align-items:center;gap:12px;padding:12px;border:0;background:transparent;color:#b9b5ad;border-radius:9px;text-align:left;margin:3px 0}.nav button:hover,.nav button.active{background:#29241b;color:var(--gold2)}.nav .ico{width:20px;text-align:center;color:var(--gold)}.side-bottom{border-top:1px solid var(--line);margin-top:24px;padding:18px 12px;color:var(--muted);font-size:12px;line-height:1.7}.main{margin-left:250px;width:calc(100% - 250px);padding:28px 34px 50px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:28px}.eyebrow{color:var(--gold);font-size:10px;letter-spacing:2.5px;text-transform:uppercase}.page-title{font-family:'Playfair Display';font-size:30px;margin:5px 0}.sub{color:var(--muted);font-size:13px}.top-actions{display:flex;align-items:center;gap:10px}.pill{border:1px solid var(--line);border-radius:30px;padding:9px 13px;color:var(--muted);font-size:12px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 15px;border-radius:8px;font-weight:600;font-size:12px}.btn:hover{border-color:var(--gold);color:var(--gold2)}.btn.gold{background:var(--gold);border-color:var(--gold);color:#16120b}.btn.danger{color:#ff9b9b;border-color:#693c3c}.btn.small{padding:7px 10px;font-size:11px}.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.stat,.panel{background:linear-gradient(145deg,#171719,#121214);border:1px solid var(--line);border-radius:13px}.stat{padding:19px}.stat-head{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.stat-icon{color:var(--gold);font-size:18px}.stat-num{font-size:27px;font-weight:700;margin:12px 0 4px}.stat-foot{color:var(--muted);font-size:11px}.cols{grid-template-columns:1.5fr 1fr}.panel{padding:20px;margin-bottom:17px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:17px}.panel h3{font-size:15px;margin:0}.panel p.hint{font-size:12px;color:var(--muted);margin:6px 0 0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:620px}th,td{padding:12px 10px;text-align:left;border-bottom:1px solid #28272a;font-size:12px;white-space:nowrap}th{color:#8f8b83;font-weight:600;font-size:10px;letter-spacing:1px;text-transform:uppercase}td{color:#e4dfd5}.muted{color:var(--muted)}.badge{display:inline-block;padding:5px 8px;border-radius:20px;font-size:10px;background:#29241b;color:var(--gold2)}.badge.green{background:#173326;color:#8fe0b5}.badge.red{background:#3b2020;color:#ffaaaa}.badge.blue{background:#1e2d42;color:#a9caff}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#b8b1a5}.field input,.field select,.field textarea{width:100%;background:#0e0e10;border:1px solid #343238;color:var(--text);padding:11px 12px;border-radius:8px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}.field textarea{min-height:85px;resize:vertical}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.section{display:none}.section.active{display:block}.empty{text-align:center;padding:35px;color:var(--muted);font-size:13px}.product-thumb{width:42px;height:42px;border-radius:7px;object-fit:cover;background:#252525;vertical-align:middle;margin-right:9px}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.toolbar input,.toolbar select{background:#0e0e10;border:1px solid #343238;color:var(--text);padding:10px;border-radius:8px;min-width:160px}.preview{max-width:100%;max-height:190px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:none;margin-top:10px}.notice{padding:12px 14px;background:#29241b;border:1px solid #59472b;color:#e8d4ad;border-radius:9px;font-size:12px;line-height:1.6;margin-bottom:16px}.two{display:grid;grid-template-columns:1fr 1fr;gap:15px}.menu-toggle{display:none}.chart-bars{height:145px;display:flex;align-items:end;gap:10px;padding-top:12px}.bar{flex:1;background:linear-gradient(180deg,#d5ad62,#80602f);border-radius:5px 5px 0 0;min-height:4px;position:relative}.bar span{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--muted)}.toast{position:fixed;right:22px;bottom:22px;background:#1d2e24;border:1px solid #3c7652;color:#b9f0cd;padding:13px 17px;border-radius:9px;z-index:20;display:none;max-width:360px;font-size:13px}.toast.error{background:#351d1d;border-color:#784141;color:#ffc1c1}.loading{opacity:.6;pointer-events:none}.checkrow{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}.checkrow input{accent-color:var(--gold)}.danger-zone{border-color:#633939}.mobile-overlay{display:none}.size-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(75px,1fr));gap:8px;padding:10px;background:#0e0e10;border:1px solid #343238;border-radius:8px;max-height:180px;overflow:auto}.size-option{display:flex;align-items:center;gap:6px;font-size:12px;color:#ddd;padding:5px}.size-option input{accent-color:var(--gold)}
+.size-picker-head{display:flex;align-items:center;gap:12px;margin:2px 0 10px;flex-wrap:wrap}.size-picker-title{font-size:12px;color:var(--gold2);font-weight:700;min-width:105px}.size-category-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px}.size-category-btn{border:1px solid #51432c;background:#151515;color:#c9c2b5;padding:9px 15px;border-radius:8px;font-size:12px;font-weight:700}.size-category-btn.active{background:var(--gold);border-color:var(--gold);color:#17130c}.size-chart-wrap{border:1px solid #343238;border-radius:9px;padding:12px;background:#0e0e10}.size-chart-caption{font-size:11px;color:var(--muted);margin:0 0 10px}.size-chart-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(85px,1fr));gap:7px}.size-chart-grid .size-option{background:#171719;border:1px solid #343238;border-radius:7px;padding:8px}.size-chart-grid .size-option:has(input:checked){border-color:var(--gold);background:#29241b}.custom-size-row{display:flex;align-items:center;gap:8px;margin-top:10px;max-width:430px}.custom-size-row input{flex:1;min-width:0;background:#0e0e10;border:1px solid #343238;color:var(--text);padding:9px 11px;border-radius:8px}.custom-size-row input:focus{border-color:var(--gold);outline:none}@media(max-width:600px){.size-picker-head{align-items:stretch;flex-direction:column;gap:6px}.custom-size-row{max-width:none}.size-category-btn{flex:1;min-width:calc(50% - 8px)}}
+
+@media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}.main{padding:24px}}
+
+@media(max-width:700px){.sidebar{transform:translateX(-100%);transition:.25s}.sidebar.open{transform:translateX(0)}.main{margin:0;width:100%;padding:18px 14px 40px}.menu-toggle{display:inline-flex}.topbar{align-items:flex-start}.page-title{font-size:25px}.pill{display:none}.stats{gap:10px}.stat{padding:14px}.stat-num{font-size:22px}.two,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:15px}.mobile-overlay.show{display:block;position:fixed;inset:0;background:#0009;z-index:4}}
+
+.media-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+
+.media-item{position:relative;width:98px;height:98px;border:1px solid #2b2a2d;border-radius:10px;overflow:hidden;background:#0d0d0e}
+
+.media-item img{width:100%;height:100%;object-fit:cover;display:block}
+
+.media-item .mtag{position:absolute;left:5px;top:5px;background:#d4b068;color:#111;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px}
+
+.media-item .rm{position:absolute;right:5px;top:5px;width:22px;height:22px;border-radius:50%;border:0;background:#000c;color:#fff;font-size:12px;line-height:1;padding:0}
+
+.media-item .mk{position:absolute;left:5px;bottom:5px;border:0;background:#000c;color:#fff;font-size:10px;padding:3px 8px;border-radius:99px}
+
+.media-preview{width:100%;max-height:200px;border-radius:10px;margin-top:10px;object-fit:cover;background:#000;display:block}
+.color-admin-row{display:grid;grid-template-columns:minmax(120px,1fr) minmax(180px,1.2fr) auto;gap:9px;align-items:center;padding:10px;background:#101012;border:1px solid #343238;border-radius:9px;margin:8px 0}.color-admin-row input[type=text]{min-width:0;background:#0e0e10;border:1px solid #343238;color:var(--text);padding:10px;border-radius:7px}.color-admin-preview{width:42px;height:42px;object-fit:cover;border-radius:7px;border:1px solid #555;vertical-align:middle;margin-left:7px}.order-date-cell{white-space:normal;min-width:150px;line-height:1.55}.order-id-cell{white-space:normal;min-width:170px;overflow-wrap:anywhere}.order-id-cell small{display:block;color:var(--muted);font-size:10px;margin-top:4px}@media(max-width:600px){.color-admin-row{grid-template-columns:1fr}.color-admin-preview{margin-left:0}}
+
+
+/* Firebase admin authentication */
+body:not(.admin-authenticated) .sidebar,
+body:not(.admin-authenticated) .main,
+body:not(.admin-authenticated) #productModal,
+body:not(.admin-authenticated) #couponModal,
+body:not(.admin-authenticated) #overlay { display:none !important; }
+body.admin-authenticated #loginScreen { display:none !important; }
+#loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:22px;background:radial-gradient(circle at top,#292116 0,#0b0b0c 55%);}
+.login-card{width:100%;max-width:420px;padding:30px;background:#171719;border:1px solid #51432c;border-radius:16px;box-shadow:0 22px 70px #0009;}
+.login-brand{text-align:center;margin-bottom:25px}
+.login-brand b{font-family:'Playfair Display',serif;font-size:29px;letter-spacing:3px;color:var(--gold2)}
+.login-brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:3px;margin-top:6px}
+.login-card h2{font-family:'Playfair Display',serif;text-align:center;margin:0 0 7px}
+.login-card .login-sub{text-align:center;color:var(--muted);font-size:12px;margin:0 0 22px}
+.login-card .field{margin:13px 0}
+.login-card .btn{width:100%;margin-top:10px;padding:13px}
+#loginError{display:none;margin-top:13px;color:#ffaaaa;background:#3b2020;border:1px solid #693c3c;padding:10px;border-radius:8px;font-size:12px;line-height:1.5}
+#adminLogout{margin-top:10px;width:100%}
+
+.payment-filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 13px}.payment-filter-tabs .btn{display:flex;align-items:center;gap:8px}.payment-filter-tabs .btn.active{background:var(--gold);border-color:var(--gold);color:#16120b}.payment-filter-tabs .btn span{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border-radius:20px;background:#ffffff18;font-size:10px}.payment-filter-tabs .btn.active span{background:#16120b20}@media(max-width:600px){.payment-filter-tabs{display:grid;grid-template-columns:1fr}.payment-filter-tabs .btn{justify-content:space-between}}
+</style>
+
+</head>
+
+<body>
+
+<div id="loginScreen">
+  <form class="login-card" id="adminLoginForm">
+    <div class="login-brand"><b>SOLANKI</b><small>SHOES • ADMIN STUDIO</small></div>
+    <h2>Admin Login</h2>
+    <p class="login-sub">Sign in to securely manage your store.</p>
+    <div class="field">
+      <label for="adminEmail">Admin Email</label>
+      <input id="adminEmail" type="email" autocomplete="username" placeholder="Enter admin email" required>
+    </div>
+    <div class="field">
+      <label for="adminPassword">Password</label>
+      <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter password" required>
+    </div>
+    <button class="btn gold" id="adminLoginButton" type="submit">Login Securely</button>
+    <div id="loginError" role="alert"></div>
+  </form>
+</div>
+
+
+<div class="mobile-overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<aside class="sidebar" id="sidebar">
+
+ <div class="brand"><b>SOLANKI</b><small>SHOES • ADMIN STUDIO</small></div>
+
+ <div class="nav">
+
+  <div class="nav-label">MAIN MENU</div>
+
+  <button class="active" data-page="dashboard"><span class="ico">◈</span>Dashboard</button>
+
+  <button data-page="products"><span class="ico">◫</span>Products</button>
+
+  <button data-page="orders"><span class="ico">▤</span>Orders</button>
+
+  <button data-page="customers"><span class="ico">♙</span>Customers</button>
+
+  <div class="nav-label">STORE MANAGEMENT</div>
+
+  <button data-page="design"><span class="ico">▧</span>Website Design</button>
+
+  <button data-page="coupons"><span class="ico">％</span>Offers & Coupons</button>
+
+  <button data-page="categories"><span class="ico">▦</span>Categories</button>
+
+  <button data-page="settings"><span class="ico">⚙</span>Store Settings</button>
+
+  <div class="nav-label">TOOLS</div>
+
+  <button data-page="reports"><span class="ico">▥</span>Reports & Export</button>
+
+ </div>
+
+ <div class="side-bottom">Solanki Shoes<br><span id="connectionText">Connecting to Firebase…</span><br><span id="signedInEmail" style="color:#d5ad62;overflow-wrap:anywhere"></span><button class="btn danger small" id="adminLogout" type="button">Sign Out</button></div>
+
+</aside>
+
+<main class="main">
+
+ <header class="topbar">
+
+  <div style="display:flex;gap:12px;align-items:flex-start">
+
+   <button class="btn menu-toggle" onclick="toggleMenu()">☰</button>
+
+   <div><div class="eyebrow">SOLANKI SHOES / CONTROL CENTER</div><h1 class="page-title" id="pageTitle">Dashboard Overview</h1><div class="sub" id="pageSub">Your store at a glance.</div></div>
+
+  </div>
+
+  <div class="top-actions"><span class="pill" id="today"></span><button class="btn" onclick="refreshAll()">↻ Refresh</button></div>
+
+ </header>
+
+ <div class="notice"><b>Firebase & Cloudinary connection:</b> This panel uses your <code>solanki-foowear</code> Firestore database and uploads images to Cloudinary (<code>da7hgw0js</code>). It reads and writes collections: <code>products</code>, <code>orders</code>, <code>customers</code>, <code>coupons</code>, <code>categories</code> and <code>siteSettings</code>.</div>
+
+
+
+ <section class="section active" id="page-dashboard">
+
+  <div class="grid stats">
+
+   <div class="stat"><div class="stat-head">TOTAL PRODUCTS <span class="stat-icon">◫</span></div><div class="stat-num" id="statProducts">—</div><div class="stat-foot">Products in Firestore</div></div>
+
+   <div class="stat"><div class="stat-head">TOTAL ORDERS <span class="stat-icon">▤</span></div><div class="stat-num" id="statOrders">—</div><div class="stat-foot">All recorded orders</div></div>
+
+   <div class="stat"><div class="stat-head">CUSTOMERS <span class="stat-icon">♙</span></div><div class="stat-num" id="statCustomers">—</div><div class="stat-foot">Customer records</div></div>
+
+   <div class="stat"><div class="stat-head">TOTAL SALES <span class="stat-icon">₹</span></div><div class="stat-num" id="statSales">₹0</div><div class="stat-foot">Based on recorded orders</div></div>
+
+  </div>
+
+  <div class="grid cols">
+
+   <div class="panel"><div class="panel-head"><div><h3>Recent Orders</h3><p class="hint">Latest orders saved in your database</p></div><button class="btn small" onclick="showPage('orders')">View all →</button></div><div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead><tbody id="recentOrders"><tr><td colspan="4" class="empty">Loading orders…</td></tr></tbody></table></div></div>
+
+   <div class="panel"><div class="panel-head"><div><h3>Order Status</h3><p class="hint">Current order distribution</p></div></div><div id="orderSummary" class="empty">No order data yet</div></div>
+
+  </div>
+
+  <div class="panel"><div class="panel-head"><div><h3>Quick Actions</h3><p class="hint">Common store management tasks</p></div></div><div class="actions"><button class="btn gold" onclick="openProductForm()">＋ Add Product</button><button class="btn" onclick="showPage('orders')">Manage Orders</button><button class="btn" onclick="showPage('design')">Update Website Banner</button><button class="btn" onclick="showPage('coupons')">Create Coupon</button></div></div>
+
+  <div class="panel"><div class="panel-head"><div><h3>Sales Overview</h3><p class="hint">Monthly sales from recorded orders (cancelled orders excluded)</p></div></div><div id="salesChart" class="chart-bars"></div></div>
+
+ </section>
+
+
+
+ <section class="section" id="page-products">
+
+  <div class="panel"><div class="panel-head"><div><h3>Product Inventory</h3><p class="hint">Add, edit and remove products from the Firestore products collection.</p></div><button class="btn gold" onclick="openProductForm()">＋ Add Product</button></div>
+
+   <div class="toolbar"><input id="productSearch" placeholder="Search product…" oninput="renderProducts()"><select id="productCategoryFilter" onchange="renderProducts()"><option value="">All categories</option></select></div>
+
+   <div class="table-wrap"><table><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Visibility</th><th>Actions</th></tr></thead><tbody id="productsBody"><tr><td colspan="6" class="empty">Loading…</td></tr></tbody></table></div>
+
+  </div>
+
+ </section>
+
+
+
+ <section class="section" id="page-orders">
+  <div class="panel">
+   <div class="panel-head"><div><h3>Order Management</h3><p class="hint">Confirm orders, track fulfilment and notify customers by email.</p></div><button class="btn" onclick="exportCSV('orders')">Export CSV ↓</button></div>
+   <div class="payment-filter-tabs" role="group" aria-label="Filter orders by payment method">
+    <button type="button" class="btn small active" data-payment-filter="all" onclick="setPaymentFilter('all')">All Orders <span id="payCountAll">0</span></button>
+    <button type="button" class="btn small" data-payment-filter="cod" onclick="setPaymentFilter('cod')">Cash on Delivery <span id="payCountCod">0</span></button>
+    <button type="button" class="btn small" data-payment-filter="online" onclick="setPaymentFilter('online')">Online Payment <span id="payCountOnline">0</span></button>
+   </div>
+   <div class="toolbar"><input id="orderSearch" placeholder="Search order / customer…" oninput="renderOrders()"><select id="orderStatusFilter" onchange="renderOrders()"><option value="">All statuses</option><option>Pending</option><option>Confirmed</option><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select></div>
+   <div class="table-wrap"><table><thead><tr><th>Order ID</th><th>Order Date &amp; Time</th><th>Customer</th><th>Phone / Email</th><th>Total</th><th>Payment</th><th>Status</th><th>Update</th></tr></thead><tbody id="ordersBody"></tbody></table></div>
+   <p class="hint" style="margin-top:12px">Customer email notifications are sent through your Netlify function. Customer emails require a verified sender domain in Resend.</p>
+  </div>
+ </section>
+
+
+
+ <section class="section" id="page-customers">
+
+  <div class="panel"><div class="panel-head"><div><h3>Customer Directory</h3><p class="hint">Customer details and order history from the customers collection.</p></div><button class="btn" onclick="exportCSV('customers')">Export CSV ↓</button></div>
+
+   <div class="toolbar"><input id="customerSearch" placeholder="Search name / phone / email…" oninput="renderCustomers()"></div>
+
+   <div class="table-wrap"><table><thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Orders</th><th>Address</th></tr></thead><tbody id="customersBody"></tbody></table></div>
+
+  </div>
+
+ </section>
+
+
+
+ <section class="section" id="page-design">
+
+  <div class="panel"><div class="panel-head"><div><h3>Website Design Manager</h3><p class="hint">Upload and publish banners and visual assets to Cloudinary.</p></div><span class="badge">Live settings</span></div>
+
+   <div class="two">
+
+    <div class="panel" style="background:#101012;margin:0"><h3>Collection Page Hero (Photo / Video)</h3><p class="hint">Collection page ke top par photo ya video lagayein.</p><div class="field" style="margin-top:15px"><label>Upload photo or video (photo max 5 MB · video max 50 MB)</label><input type="file" id="heroFile" accept="image/png,image/jpeg,image/webp,video/mp4,video/webm,video/quicktime" onchange="previewMedia(this,'heroPreviewBox')"></div><div id="heroPreviewBox"></div><div class="actions"><button class="btn gold" onclick="saveHero()">Publish</button><button class="btn danger" onclick="removeHero()">Remove</button></div></div>
+
+    <div class="panel" style="background:#101012;margin:0"><h3>Homepage Banner (Photo / Video)</h3><p class="hint">Home page ke hero section ke liye photo ya video upload karein.</p><div class="field" style="margin-top:15px"><label>Upload photo or video (photo max 5 MB · video max 50 MB)</label><input type="file" id="homeBannerFile" accept="image/png,image/jpeg,image/webp,video/mp4,video/webm,video/quicktime" onchange="previewMedia(this,'homeBannerPreviewBox')"></div><div id="homeBannerPreviewBox"></div><div class="field" style="margin-top:12px"><label>Banner heading</label><input id="homeBannerTitle" placeholder="New collection is here"></div><div class="field" style="margin-top:12px"><label>Banner subtitle</label><input id="homeBannerText" placeholder="Step into style"></div><div class="actions"><button class="btn gold" onclick="saveHomeBanner()">Save Homepage Banner</button><button class="btn danger" onclick="removeHomeMedia()">Remove Photo/Video</button></div></div>
+
+   </div>
+
+   <div class="panel" style="margin-top:16px"><h3>Store Announcement</h3><p class="hint">Save a message for a website announcement bar.</p><div class="form-grid" style="margin-top:14px"><div class="field"><label>Announcement text</label><input id="announcementText" placeholder="Free delivery on selected orders"></div><div class="field"><label>Announcement status</label><select id="announcementEnabled"><option value="true">Enabled</option><option value="false">Disabled</option></select></div></div><div class="actions"><button class="btn gold" onclick="saveAnnouncement()">Save Announcement</button></div></div>
+
+  </div>
+
+ </section>
+
+
+
+ <section class="section" id="page-coupons">
+
+  <div class="panel"><div class="panel-head"><div><h3>Offers & Coupons</h3><p class="hint">Create discount codes and manage their active dates.</p></div><button class="btn gold" onclick="openCouponForm()">＋ Create Coupon</button></div><div class="table-wrap"><table><thead><tr><th>Code</th><th>Discount</th><th>Minimum order</th><th>Expiry</th><th>Status</th><th>Actions</th></tr></thead><tbody id="couponsBody"></tbody></table></div></div>
+
+ </section>
+
+
+
+ <section class="section" id="page-categories">
+
+  <div class="panel"><div class="panel-head"><div><h3>Product Categories</h3><p class="hint">Store ke footwear categories aur unke products.</p></div></div><div class="table-wrap"><table><thead><tr><th>Category</th><th>Products</th></tr></thead><tbody id="categoriesBody"></tbody></table></div></div>
+  <div class="panel"><div class="panel-head"><div><h3>Footwear Size Management</h3><p class="hint">UK, US, EU, Kids ya apni custom size category banayein.</p></div></div>
+   <input type="hidden" id="sizeCategoryId"><div class="form-grid">
+   <div class="field"><label>Size category name *</label><input id="sizeCategoryName" placeholder="e.g. UK Sizes, India Sizes, Kids Sizes"></div>
+   <div class="field"><label>Available sizes * (comma separated)</label><input id="sizeCategoryValues" placeholder="6, 7, 8, 9, 10"></div></div>
+   <div class="actions"><button class="btn gold" onclick="saveSizeCategory()">Save Size Category</button><button class="btn" onclick="clearSizeCategoryForm()">Clear</button></div>
+   <div class="table-wrap" style="margin-top:15px"><table><thead><tr><th>Category</th><th>Sizes</th><th>Actions</th></tr></thead><tbody id="sizeCategoriesBody"></tbody></table></div></div>
+
+ </section>
+
+ <section class="section" id="page-settings">
+  <div class="panel">
+   <div class="panel-head"><div><h3>General Store Information</h3><p class="hint">Manage your store name, contact details and social links.</p></div></div>
+   <div class="form-grid">
+    <div class="field"><label for="setStoreName">Store Name</label><input id="setStoreName" placeholder="Solanki Shoes"></div>
+    <div class="field"><label for="setPhone">Phone Number</label><input id="setPhone" type="tel" placeholder="Enter phone number"></div>
+    <div class="field"><label for="setWhatsapp">WhatsApp Number</label><input id="setWhatsapp" type="tel" placeholder="Enter WhatsApp number"></div>
+    <div class="field"><label for="setEmail">Store Email</label><input id="setEmail" type="email" placeholder="Enter store email"></div>
+    <div class="field"><label for="setInstagram">Instagram URL</label><input id="setInstagram" type="url" placeholder="https://instagram.com/..."></div>
+    <div class="field"><label for="setMap">Google Maps URL</label><input id="setMap" type="url" placeholder="Paste Google Maps link"></div>
+    <div class="field full"><label for="setAddress">Store Address</label><textarea id="setAddress" rows="3" placeholder="Enter complete store address"></textarea></div>
+   </div>
+   <div class="actions"><button type="button" class="btn gold" onclick="saveSettings()">Save Store Information</button></div>
+  </div>
+
+  <div class="panel">
+   <div class="panel-head"><div><h3>Payment Preferences</h3><p class="hint">Choose the payment preference shown for your store. This does not configure a payment gateway.</p></div></div>
+   <div class="form-grid">
+    <div class="field"><label for="paymentMethod">Payment Method</label><select id="paymentMethod"><option value="Cash on Delivery">Cash on Delivery</option><option value="Online Payment">Online Payment</option><option value="Both">Both</option></select></div>
+    <div class="field"><label for="paymentProvider">Payment Provider</label><input id="paymentProvider" placeholder="e.g. Razorpay"></div>
+    <div class="field full"><label for="paymentNote">Payment Note</label><textarea id="paymentNote" rows="3" placeholder="Enter payment instructions"></textarea></div>
+   </div>
+   <div class="actions"><button type="button" class="btn gold" onclick="savePaymentSettings()">Save Payment Preferences</button></div>
+  </div>
+ </section>
+
+ <section class="section" id="page-reports">
+  <div class="panel">
+   <div class="panel-head"><div><h3>Reports & Data Export</h3><p class="hint">Download your store records as CSV files that can be opened in Excel.</p></div></div>
+   <div class="actions">
+    <button type="button" class="btn gold" onclick="exportCSV('products')">Export Products CSV ↓</button>
+    <button type="button" class="btn" onclick="exportCSV('orders')">Export Orders CSV ↓</button>
+    <button type="button" class="btn" onclick="exportCSV('customers')">Export Customers CSV ↓</button>
+    <button type="button" class="btn" onclick="exportCSV('coupons')">Export Coupons CSV ↓</button>
+   </div>
+  </div>
+ </section>
+
+</main>
+
+
+
+<div class="toast" id="toast"></div>
+
+
+
+<!-- Product modal -->
+
+<div id="productModal" style="display:none;position:fixed;inset:0;background:#000b;z-index:15;overflow:auto;padding:25px">
+
+ <div class="panel" style="max-width:760px;margin:30px auto;background:#171719">
+
+  <div class="panel-head"><div><h3 id="productModalTitle">Add Product</h3><p class="hint">Product details saved to Firestore collection: products</p></div><button class="btn" onclick="closeProductForm()">✕</button></div>
+
+  <input type="hidden" id="prodId">
+
+  <div class="form-grid">
+
+   <div class="field"><label>Product name *</label><input id="prodName" required placeholder="Classic White Sneakers"></div>
+
+   <div class="field"><label>Category *</label><select id="prodCategory"><option value="">Select category</option><option>Loafer &amp; Formal</option><option>Chappal</option><option>Shoes</option><option>Sneakers</option><option>Sports Shoes</option></select></div>
+
+   <div class="field"><label>Price (₹) *</label><input id="prodPrice" type="number" min="0" placeholder="1499"></div>
+
+   <div class="field"><label>Original price (₹)</label><input id="prodOriginal" type="number" min="0" placeholder="1999"></div>
+
+   <div class="field"><label>Stock quantity</label><input id="prodStock" type="number" min="0" value="0"></div>
+
+   <div class="field"><label>Brand</label><input id="prodBrand" placeholder="Solanki"></div>
+
+   <div class="field full"><label>Product photos (multiple select kar sakte hain · max 8 · har photo max 5 MB)</label><input id="prodImageFile" type="file" multiple accept="image/png,image/jpeg,image/webp" onchange="addProductFiles(this)"><div class="media-grid" id="prodMediaGrid"></div><p class="hint" style="margin:8px 0 0">Pehli photo (Main) shop card par dikhti hai. Product page par saari photos dikhengi.</p></div>
+
+   <div class="field full"><label>Ya photo ka link add karein (optional)</label><div style="display:flex;gap:8px"><input id="prodImage" placeholder="https://…" style="flex:1"><button type="button" class="btn small" onclick="addProductUrl()">Add</button></div></div>
+
+   <div class="field full">
+    <label>Product Sizes</label>
+    <div class="size-picker-head"><span class="size-picker-title">Choose Size Chart</span></div>
+    <input type="hidden" id="prodSizeCategory" value="">
+    <div id="prodSizeCategoryButtons" class="size-category-buttons"></div>
+    <div class="size-chart-wrap">
+     <p class="size-chart-caption" id="sizeChartCaption">Category select karein, phir product ke available sizes par tick karein.</p>
+     <div id="prodSizeOptions" class="size-chart-grid"><span class="muted">Pehle size category select karein.</span></div>
+    </div>
+    <div class="custom-size-row">
+     <input id="prodCustomSizeInput" placeholder="Custom size type karein (e.g. 5.5, 11.5)" aria-label="Custom size">
+     <button type="button" class="btn small gold" onclick="addCustomProductSize()">+ Add Size</button>
+    </div>
+    <input type="hidden" id="prodSizes" value="">
+    <p class="hint" style="margin:5px 0 0">UK, US, EU ya Kids category choose karein. Zaroorat ho to apna custom size bhi add karein.</p>
+   </div>
+
+   <div class="field full"><label>Product Colors &amp; Optional Color Photos</label>
+    <p class="hint">Har colour ka naam likhein. Us colour ki photo upload karna optional hai. Photo nahi denge to product ki main photos use hongi.</p>
+    <div id="productColorRows"></div>
+    <button type="button" class="btn small" onclick="addProductColorRow()">＋ Add Color</button>
+   </div>
+
+   <div class="field full"><label>Description</label><textarea id="prodDescription" placeholder="Product description…"></textarea></div>
+
+   <div class="field"><label>Visibility</label><select id="prodActive"><option value="true">Visible on store</option><option value="false">Hidden</option></select></div>
+
+   <div class="field"><label>Featured product</label><select id="prodFeatured"><option value="false">No</option><option value="true">Yes</option></select></div>
+
+  </div>
+
+  <div class="actions"><button class="btn gold" onclick="saveProduct()">Save Product</button><button class="btn" onclick="closeProductForm()">Cancel</button></div>
+
+ </div>
+
+</div>
+
+
+
+<!-- Coupon modal -->
+
+<div id="couponModal" style="display:none;position:fixed;inset:0;background:#000b;z-index:16;overflow:auto;padding:25px">
+
+ <div class="panel" style="max-width:560px;margin:45px auto;background:#171719">
+
+  <div class="panel-head"><h3>Create Coupon</h3><button class="btn" onclick="closeCouponForm()">✕</button></div>
+
+  <div class="form-grid"><div class="field"><label>Coupon code *</label><input id="couponCode" placeholder="WELCOME10"></div><div class="field"><label>Discount (%)</label><input id="couponDiscount" type="number" min="1" max="100" placeholder="10"></div><div class="field"><label>Minimum order (₹)</label><input id="couponMin" type="number" min="0" value="0"></div><div class="field"><label>Expiry date</label><input id="couponExpiry" type="date"></div><div class="field"><label>Status</label><select id="couponActive"><option value="true">Active</option><option value="false">Inactive</option></select></div></div>
+
+  <div class="actions"><button class="btn gold" onclick="saveCoupon()">Save Coupon</button><button class="btn" onclick="closeCouponForm()">Cancel</button></div>
+
+ </div>
+
+</div>
+
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import { getFirestore, collection, getDocs, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, serverTimestamp, query, orderBy, arrayUnion } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+ apiKey: "AIzaSyAGkJmdmxdinjnG1o3aoxchUrdOM0BzBXw",
+
+ authDomain: "solanki-foowear.firebaseapp.com",
+
+ projectId: "solanki-foowear",
+
+ storageBucket: "solanki-foowear.firebasestorage.app",
+
+ messagingSenderId: "1056432826182",
+
+ appId: "1:1056432826182:web:9f102961bfa83f951aa747"
+
+};
+
+
+
+const CLOUDINARY_CLOUD_NAME = "da7hgw0js";
+
+const CLOUDINARY_UPLOAD_PRESET = "solanki-shoes";
+
+
+
+async function uploadToCloudinary(file) {
+
+ const isVideo = (file.type || "").startsWith("video/");
+
+ const limitMB = isVideo ? 50 : 5;
+
+ if (file.size > limitMB * 1024 * 1024) throw Error((isVideo ? "Video" : "Image") + " must be " + limitMB + " MB or smaller.");
+
+ const formData = new FormData();
+
+ formData.append("file", file);
+
+ formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+ const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${isVideo ? "video" : "image"}/upload`, {
+
+  method: "POST",
+
+  body: formData
+
+ });
+
+ const data = await res.json();
+
+ if (!res.ok || !data.secure_url) {
+
+  throw Error(data.error?.message || "Cloudinary upload failed.");
+
+ }
+
+ return data.secure_url;
+
+}
+
+
+
+const firebaseApp=initializeApp(firebaseConfig), db=getFirestore(firebaseApp), auth=getAuth(firebaseApp);
+
+const $=id=>document.getElementById(id);
+
+let products=[],orders=[],customers=[],coupons=[],categories=[],sizeCategories=[],heroPreviewUrl="",productImageUrl="",prodMedia=[],prodColorRows=[];
+let paymentFilter="all";
+const DEFAULT_SIZE_CATEGORIES=[
+ {id:"uk",name:"UK Sizes",sizes:["3","4","5","6","7","8","9","10","11","12"]},
+ {id:"us",name:"US Sizes",sizes:["4","5","6","7","8","9","10","11","12","13"]},
+ {id:"eu",name:"EU Sizes",sizes:["36","37","38","39","40","41","42","43","44","45","46","47"]},
+ {id:"kids",name:"Kids Sizes",sizes:["1","2","3","4","5","6","7","8","9","10","11","12","13"]}
+];
+
+const MAX_PRODUCT_PHOTOS=8;
+
+const STORE_CATEGORIES=["Loafer & Formal","Chappal","Shoes","Sneakers","Sports Shoes"];
+
+const CAT_ALIASES={"loafer & formal":["formal","loafer","loafers","formal & loafers","loafers & formal","loafer and formal"],"chappal":["chappal","chappals","sandal","sandals","slipper","slippers"],"shoes":["shoe"],"sneakers":["sneaker"],"sports shoes":["sports shoe","sports","running shoes"]};
+
+const normCat=c=>String(c||'').toLowerCase().replace(/\s*&\s*/g,' & ').replace(/\s+/g,' ').trim();
+
+function catKey(c){const n=normCat(c);for(const k in CAT_ALIASES){if(k===n||CAT_ALIASES[k].includes(n))return k}return n}
+
+function canonCategory(c){const k=catKey(c);return STORE_CATEGORIES.find(x=>x.toLowerCase()===k)||c||''}
+
+function videoPoster(url){return url.replace('/video/upload/','/video/upload/so_0,f_jpg,q_auto/').replace(/\.[a-z0-9]+$/i,'.jpg')}
+
+function showMediaPreview(boxId,url,type,poster){const b=$(boxId);if(!b)return;if(!url){b.innerHTML='';return}b.innerHTML=type==='video'?`<video class="media-preview" src="${safe(url)}" ${poster?`poster="${safe(poster)}"`:''} controls muted playsinline></video>`:`<img class="media-preview" src="${safe(url)}" alt="">`}
+
+window.previewMedia=(input,boxId)=>{const f=input.files[0];if(!f)return;showMediaPreview(boxId,URL.createObjectURL(f),f.type.startsWith('video/')?'video':'image')};
+
+async function uploadMediaSetting(file){const url=await uploadToCloudinary(file);if(file.type.startsWith('video/'))return{mediaType:'video',videoUrl:url,posterUrl:videoPoster(url),imageUrl:''};return{mediaType:'image',imageUrl:url,videoUrl:'',posterUrl:''}}
+
+function renderProdMedia(){$('prodMediaGrid').innerHTML=prodMedia.map((m,i)=>`<div class="media-item"><img src="${safe(m.url||m.preview)}" alt="">${i===0?'<span class="mtag">Main</span>':`<button type="button" class="mk" onclick="makeMainPhoto(${i})">Make main</button>`}<button type="button" class="rm" onclick="removeProdPhoto(${i})" aria-label="Remove photo">✕</button></div>`).join('')}
+
+window.addProductFiles=(input)=>{for(const f of [...input.files]){if(prodMedia.length>=MAX_PRODUCT_PHOTOS){toast('Maximum '+MAX_PRODUCT_PHOTOS+' photos allowed.',true);break}if(!f.type.startsWith('image/')){toast(f.name+' is not an image.',true);continue}if(f.size>5*1024*1024){toast(f.name+' is larger than 5 MB.',true);continue}prodMedia.push({file:f,preview:URL.createObjectURL(f)})}input.value='';renderProdMedia()};
+
+window.addProductUrl=()=>{const u=$('prodImage').value.trim();if(!/^https?:\/\//i.test(u)){toast('Enter a valid photo link starting with https://',true);return}if(prodMedia.length>=MAX_PRODUCT_PHOTOS){toast('Maximum '+MAX_PRODUCT_PHOTOS+' photos allowed.',true);return}prodMedia.push({url:u});$('prodImage').value='';renderProdMedia()};
+
+window.removeProdPhoto=(i)=>{prodMedia.splice(i,1);renderProdMedia()};
+
+window.makeMainPhoto=(i)=>{const [m]=prodMedia.splice(i,1);prodMedia.unshift(m);renderProdMedia()};
+
+function setProdCategory(v){const sel=$('prodCategory');[...sel.options].filter(o=>o.dataset.extra).forEach(o=>o.remove());const c=canonCategory(v);if(c&&![...sel.options].some(o=>o.value===c||o.textContent===c)){const o=document.createElement('option');o.value=c;o.textContent=c+' (old)';o.dataset.extra='1';sel.appendChild(o)}sel.value=c||''}
+
+const pageMeta={
+ dashboard:["Dashboard Overview","Your store at a glance."],
+ products:["Product Management","Manage your footwear inventory."],
+ orders:["Order Management","Track and update customer orders."],
+ customers:["Customer Management","Your store customer directory."],
+ design:["Website Design Manager","Manage banners and website content."],
+ coupons:["Offers & Coupons","Create and manage promotions."],
+ categories:["Categories","Organise your product catalogue."],
+ settings:["Store Settings","Manage contact, policies and payment preferences."],
+ reports:["Reports & Export","Download store data and review sales."]
+};
+
+window.toggleMenu=()=>{$('sidebar')?.classList.toggle('open');$('overlay')?.classList.toggle('show')};
+
+window.showPage=(name)=>{
+ const page=$('page-'+name),meta=pageMeta[name];
+ if(!page||!meta){console.error('Admin page missing:',name);toast('This admin page is missing: '+name,true);return}
+ document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+ page.classList.add('active');
+ document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===name));
+ $('pageTitle').textContent=meta[0];$('pageSub').textContent=meta[1];
+ $('sidebar')?.classList.remove('open');$('overlay')?.classList.remove('show');
+};
+
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>window.showPage(b.dataset.page)));
+
+$('today').textContent=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+
+function toast(msg,error=false){const t=$('toast');t.textContent=msg;t.className='toast'+(error?' error':'');t.style.display='block';clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>t.style.display='none',4200)}
+
+function money(v){return '₹'+Number(v||0).toLocaleString('en-IN')}
+
+function val(obj,...keys){for(const k of keys){if(obj?.[k]!==undefined&&obj[k]!==null&&obj[k]!=='')return obj[k]}return ''}
+
+function dateText(v){if(!v)return '—';try{const d=v.toDate?v.toDate():new Date(v);return isNaN(d)?'—':d.toLocaleDateString('en-IN')}catch{return '—'}}
+function dateTimeText(order){const raw=val(order,'createdAt','date','orderDate','created_at','timestamp','createdOn');if(!raw)return 'Date not saved';try{let d;if(typeof raw==='number')d=new Date(raw<1e12?raw*1000:raw);else d=raw?.toDate?raw.toDate():new Date(raw);if(isNaN(d))return 'Date not saved';return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+'<br><small class=\"muted\">'+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true})+'</small>'}catch{return 'Date not saved'}}
+function publicOrderId(order){return String(val(order,'orderId','publicOrderId','displayOrderId')||order.id||'—')}
+
+function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+async function readCol(name){const snap=await getDocs(collection(db,name));return snap.docs.map(d=>({id:d.id,...d.data()}))}
+
+async function readSetting(id){const s=await getDoc(doc(db,'siteSettings',id));return s.exists()?s.data():{}}
+
+async function writeSetting(id,data){await setDoc(doc(db,'siteSettings',id),{...data,updatedAt:serverTimestamp()},{merge:true})}
+
+window.refreshAll=async()=>{try{$('connectionText').textContent='Loading store data…';[products,orders,customers,coupons,categories,sizeCategories]=await Promise.all([readCol('products'),readCol('orders'),readCol('customers'),readCol('coupons'),readCol('categories'),readCol('sizeCategories')]);await initializeSizeCategories();renderAll();await loadSettings();$('connectionText').textContent='Firebase connected';toast('Store data refreshed.')}catch(e){$('connectionText').textContent='Firebase error';toast('Firebase error: '+e.message,true);console.error(e)}};
+
+function renderAll(){ $('statProducts').textContent=products.length;$('statOrders').textContent=orders.length;$('statCustomers').textContent=customers.length;const sales=orders.filter(o=>String(val(o,'status','orderStatus')).toLowerCase()!=='cancelled').reduce((a,o)=>a+Number(val(o,'total','totalAmount','amount','grandTotal')||0),0);$('statSales').textContent=money(sales);renderProducts();renderOrders();renderCustomers();renderCoupons();renderCategories();renderRecent();renderOrderSummary();renderSalesChart();fillCategoryOptions();renderSizeCategories();fillProductSizeCategories()}
+
+function renderProducts(){const q=($('productSearch')?.value||'').toLowerCase(),cat=$('productCategoryFilter')?.value||'';const rows=products.filter(p=>(String(val(p,'name','title')).toLowerCase().includes(q)||String(val(p,'brand')).toLowerCase().includes(q))&&(!cat||catKey(val(p,'category'))===catKey(cat)));$('productsBody').innerHTML=rows.length?rows.map(p=>`<tr><td><img class="product-thumb" src="${safe(val(p,'image','imageUrl','photo'))}" onerror="this.style.display='none'">${safe(val(p,'name','title')||'Unnamed product')}</td><td>${safe(canonCategory(val(p,'category'))||'—')}</td><td>${money(val(p,'price','sellingPrice'))}</td><td>${safe(val(p,'stock','quantity')??0)}</td><td><span class="badge ${p.active===false?'red':'green'}">${p.active===false?'Hidden':'Visible'}</span></td><td><button class="btn small" onclick="editProduct('${p.id}')">Edit</button> <button class="btn small danger" onclick="removeProduct('${p.id}')">Delete</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">No products found. Add your first product.</td></tr>'; }
+window.renderProducts=renderProducts;
+
+function orderPaymentType(o){
+ const raw=val(o,'paymentMethod','paymentType','paymentMode','payment_method','method','paymentStatus');
+ const value=String(raw||'').toLowerCase().replace(/[ _-]+/g,' ');
+ if(/cash on delivery|\bcod\b|cashondelivery/.test(value))return 'cod';
+ if(/online|razorpay|prepaid|upi|credit card|debit card|net banking|wallet/.test(value))return 'online';
+ if(o?.razorpayPaymentId||o?.razorpayOrderId||o?.razorpay_payment_id||o?.paymentId)return 'online';
+ return 'unknown';
+}
+function orderPaymentLabel(o){
+ const type=orderPaymentType(o);
+ if(type==='cod')return 'Cash on Delivery';
+ if(type==='online')return 'Online Payment';
+ return String(val(o,'paymentMethod','paymentType','paymentMode','payment_method','method','paymentStatus')||'Not specified');
+}
+window.setPaymentFilter=(filter)=>{paymentFilter=['all','cod','online'].includes(filter)?filter:'all';renderOrders()};
+function renderOrders(){
+ const q=($('orderSearch')?.value||'').toLowerCase(),st=$('orderStatusFilter')?.value||'';
+ const counts={all:orders.length,cod:orders.filter(o=>orderPaymentType(o)==='cod').length,online:orders.filter(o=>orderPaymentType(o)==='online').length};
+ $('payCountAll').textContent=counts.all;$('payCountCod').textContent=counts.cod;$('payCountOnline').textContent=counts.online;
+ document.querySelectorAll('[data-payment-filter]').forEach(b=>{const active=b.dataset.paymentFilter===paymentFilter;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active?'true':'false')});
+ const rows=orders.filter(o=>(paymentFilter==='all'||orderPaymentType(o)===paymentFilter)&&(!st||String(val(o,'status','orderStatus')||'Pending').toLowerCase()===st.toLowerCase())&&(`${o.id} ${publicOrderId(o)} ${val(o,'customerName','name')} ${val(o,'phone','mobile')} ${val(o,'email')||o.customer?.email||''}`.toLowerCase().includes(q)));
+ $('ordersBody').innerHTML=rows.length?rows.map(o=>{
+  const status=String(val(o,'status','orderStatus')||'Pending');
+  const email=val(o,'email')||o.customer?.email||'';
+  const orderId=publicOrderId(o);
+  return `<tr>
+   <td class="order-id-cell"><b>${safe(orderId)}</b><small>Document: ${safe(o.id)}</small></td>
+   <td class="order-date-cell">${dateTimeText(o)}</td>
+   <td>${safe(val(o,'customerName','name')||o.customer?.name||'—')}</td>
+   <td>${safe(val(o,'phone','mobile')||o.customer?.phone||'—')}<br><small class="muted">${safe(email||'No email')}</small></td>
+   <td>${money(val(o,'total','totalAmount','amount','grandTotal'))}</td>
+   <td>${safe(orderPaymentLabel(o))}</td>
+   <td><span class="badge">${safe(status)}</span></td>
+   <td>
+    ${status.toLowerCase()==='pending'?`<button class="btn gold small" onclick="changeOrderStatus('${o.id}','Confirmed')">Confirm</button>`:''}
+    <select aria-label="Update order status" style="margin-left:5px;background:#111;color:#eee;border:1px solid #444;padding:7px;border-radius:6px" onchange="changeOrderStatus('${o.id}',this.value)">
+     ${['Pending','Confirmed','Processing','Shipped','Delivered','Cancelled'].map(s=>`<option value="${s}" ${status.toLowerCase()===s.toLowerCase()?'selected':''}>${s}</option>`).join('')}
+    </select>
+   </td></tr>`;
+ }).join(''):'<tr><td colspan="8" class="empty">No orders found in this payment category. Check the other payment tab or clear the search/status filter.</td></tr>';
+}
+window.renderOrders=renderOrders;
+window.changeOrderStatus=async(id,status)=>{
+ const o=orders.find(x=>x.id===id);
+ if(!o)return toast('Order not found. Refresh and try again.',true);
+ const oldStatus=String(val(o,'status','orderStatus')||'Pending');
+ if(oldStatus.toLowerCase()===String(status).toLowerCase())return;
+ if(!['Pending','Confirmed','Processing','Shipped','Delivered','Cancelled'].includes(status))return toast('Invalid order status.',true);
+ try{
+  await updateDoc(doc(db,'orders',id),{
+   status,orderStatus:status,updatedAt:serverTimestamp(),
+   statusHistory:arrayUnion({status,previousStatus:oldStatus,changedAt:new Date().toISOString()})
+  });
+  o.status=status;o.orderStatus=status;
+  renderOrders();renderRecent();renderOrderSummary();
+  toast('Order status saved. Sending customer email…');
+  const customerEmail=val(o,'email')||o.customer?.email||'';
+  if(!customerEmail){toast('Status updated. Customer email not sent: no email on this order.',true);return}
+  try{
+   const currentUser=auth.currentUser;
+   if(!currentUser)throw new Error('Admin session expired. Please login again.');
+   const idToken=await currentUser.getIdToken();
+   const response=await fetch('/.netlify/functions/send-customer-status-email',{
+    method:'POST',
+    headers:{
+     'Content-Type':'application/json',
+     'Authorization':`Bearer ${idToken}`
+    },
+    body:JSON.stringify({
+     orderId:publicOrderId(o),
+     status,
+     previousStatus:oldStatus,
+     order:o
+    })
+   });
+   const result=await response.json().catch(()=>({}));
+   if(!response.ok||result.sent===false){
+    throw new Error(result.error||result.reason||`Email service request failed (HTTP ${response.status}).`);
+   }
+   toast('Order status updated and customer email sent.');
+  }catch(emailError){
+   console.error('Customer status email:',emailError);
+   toast('Order status saved, but customer email failed: '+emailError.message,true);
+  }
+ }catch(e){toast('Could not update order: '+e.message,true)}
+};
+
+function renderCustomers(){const q=($('customerSearch')?.value||'').toLowerCase();const rows=customers.filter(c=>`${val(c,'name','customerName')} ${val(c,'phone','mobile')} ${val(c,'email')}`.toLowerCase().includes(q));$('customersBody').innerHTML=rows.length?rows.map(c=>`<tr><td>${safe(val(c,'name','customerName')||'—')}</td><td>${safe(val(c,'phone','mobile')||'—')}</td><td>${safe(val(c,'email')||'—')}</td><td>${safe(val(c,'totalOrders','ordersCount')??'—')}</td><td>${safe(val(c,'address','shippingAddress')||'—')}</td></tr>`).join(''):'<tr><td colspan="5" class="empty">No customer records found.</td></tr>'}
+window.renderCustomers=renderCustomers;
+
+function renderCoupons(){$('couponsBody').innerHTML=coupons.length?coupons.map(c=>`<tr><td><b>${safe(val(c,'code','name'))}</b></td><td>${safe(val(c,'discount','discountPercent'))}%</td><td>${money(val(c,'minimumOrder','minOrder'))}</td><td>${safe(val(c,'expiry','expiryDate')||'—')}</td><td><span class="badge ${c.active===false?'red':'green'}">${c.active===false?'Inactive':'Active'}</span></td><td><button class="btn small danger" onclick="deleteCoupon('${c.id}')">Delete</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">No coupons created yet.</td></tr>'}
+
+async function initializeSizeCategories(){
+ for(const item of DEFAULT_SIZE_CATEGORIES){
+  const ref=doc(db,'sizeCategories',item.id),snap=await getDoc(ref);
+  if(!snap.exists())await setDoc(ref,{name:item.name,sizes:item.sizes,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});
+ }
+ sizeCategories=await readCol('sizeCategories');
+}
+function renderSizeCategories(){const body=$('sizeCategoriesBody');if(!body)return;body.innerHTML=sizeCategories.length?sizeCategories.map(c=>`<tr><td><b>${safe(c.name)}</b></td><td>${safe((Array.isArray(c.sizes)?c.sizes:[]).join(', '))}</td><td><button class="btn small" onclick="editSizeCategory('${safe(c.id)}')">Edit</button> <button class="btn small danger" onclick="deleteSizeCategory('${safe(c.id)}')">Delete</button></td></tr>`).join(''):'<tr><td colspan="3" class="empty">No size categories available.</td></tr>'}
+function clearSizeCategoryForm(){$('sizeCategoryId').value='';$('sizeCategoryName').value='';$('sizeCategoryValues').value=''}
+window.clearSizeCategoryForm=clearSizeCategoryForm;
+window.saveSizeCategory=async()=>{const id=$('sizeCategoryId').value.trim(),name=$('sizeCategoryName').value.trim(),sizes=[...new Set($('sizeCategoryValues').value.split(',').map(x=>x.trim()).filter(Boolean))];if(!name||!sizes.length)return toast('Category name aur kam se kam ek size zaroori hai.',true);try{const ref=id?doc(db,'sizeCategories',id):doc(collection(db,'sizeCategories'));await setDoc(ref,{name,sizes,updatedAt:serverTimestamp(),...(id?{}:{createdAt:serverTimestamp()})},{merge:true});clearSizeCategoryForm();await refreshAll();toast('Size category saved.')}catch(e){toast('Size category save failed: '+e.message,true)}};
+window.editSizeCategory=id=>{const c=sizeCategories.find(x=>x.id===id);if(!c)return;$('sizeCategoryId').value=c.id;$('sizeCategoryName').value=c.name||'';$('sizeCategoryValues').value=Array.isArray(c.sizes)?c.sizes.join(', '):'';$('sizeCategoryName').focus()};
+window.deleteSizeCategory=async id=>{const c=sizeCategories.find(x=>x.id===id);if(!c)return;if(products.some(p=>p.sizeCategoryId===id))return toast('Pehle is category ko use karne wale products edit karein.',true);if(!confirm('Delete size category '+c.name+'?'))return;try{await deleteDoc(doc(db,'sizeCategories',id));sizeCategories=sizeCategories.filter(x=>x.id!==id);renderSizeCategories();fillProductSizeCategories();toast('Size category deleted.')}catch(e){toast('Delete failed: '+e.message,true)}};
+function fillProductSizeCategories(){
+ const hidden=$('prodSizeCategory'),buttons=$('prodSizeCategoryButtons');if(!hidden||!buttons)return;
+ const current=hidden.value;
+ buttons.innerHTML=sizeCategories.map(c=>`<button type="button" class="size-category-btn ${c.id===current?'active':''}" onclick="setProductSizeCategory('${safe(c.id)}')">${safe(c.name)}</button>`).join('');
+ if(sizeCategories.some(c=>c.id===current)){renderProductSizeOptions([])}
+ else if(sizeCategories.length){hidden.value=sizeCategories[0].id;renderProductSizeOptions([]);fillProductSizeCategories()}
+ else {$('prodSizeOptions').innerHTML='<span class="muted">Size categories load nahi hui.</span>'}
+}
+window.setProductSizeCategory=id=>{const hidden=$('prodSizeCategory');if(!hidden)return;hidden.value=id;fillProductSizeCategories();renderProductSizeOptions([])};
+function renderProductSizeOptions(keepSizes){const box=$('prodSizeOptions'),sel=$('prodSizeCategory');if(!box||!sel)return;const category=sizeCategories.find(c=>c.id===sel.value);const categoryValues=category?(Array.isArray(category.sizes)?category.sizes:[]).map(String):[];let custom=($('prodSizes').value||'').split(',').map(x=>x.trim()).filter(Boolean);if(Array.isArray(keepSizes)&&keepSizes.length){custom=[...new Set([...custom,...keepSizes.map(String).filter(v=>!categoryValues.includes(v))])];$('prodSizes').value=custom.join(', ')}const values=[...new Set([...categoryValues,...custom])];const keep=new Set((Array.isArray(keepSizes)?keepSizes:[]).map(String));if(!keepSizes||!keepSizes.length){document.querySelectorAll('.product-size-check:checked').forEach(x=>keep.add(x.value));}if($('sizeChartCaption'))$('sizeChartCaption').textContent=category?`${category.name} — product ke liye jitne sizes available hain unhe select karein.`:'Category select karein.';if(!category&&!custom.length){box.innerHTML='<span class="muted">Pehle size category select karein.</span>';return}box.innerHTML=values.map(v=>`<label class="size-option"><input class="product-size-check" type="checkbox" value="${safe(v)}" ${keep.has(v)?'checked':''}> ${safe(v)}${custom.includes(v)&&!categoryValues.includes(v)?' <small style="color:var(--gold)">Custom</small>':''}</label>`).join('')||'<span class="muted">Is category mein sizes nahi hain.</span>'}
+window.addCustomProductSize=()=>{const input=$('prodCustomSizeInput'),value=input.value.trim();if(!value)return toast('Pehle custom size type karein.',true);const values=($('prodSizes').value||'').split(',').map(x=>x.trim()).filter(Boolean);const selected=[...document.querySelectorAll('.product-size-check:checked')].map(x=>x.value);if(!values.some(x=>x.toLowerCase()===value.toLowerCase())&&!selected.some(x=>x.toLowerCase()===value.toLowerCase()))values.push(value);$('prodSizes').value=values.join(', ');input.value='';renderProductSizeOptions([...selected,value]);toast('Custom size add ho gaya.');};
+
+
+function renderCategories(){const rows=STORE_CATEGORIES.map(c=>`<tr><td>${safe(c)}</td><td>${products.filter(p=>catKey(p.category)===catKey(c)).length}</td></tr>`);const other=products.filter(p=>!STORE_CATEGORIES.some(c=>catKey(c)===catKey(p.category))).length;if(other)rows.push(`<tr><td>Other / old category <span class="hint">(product edit karke category select karein)</span></td><td>${other}</td></tr>`);$('categoriesBody').innerHTML=rows.join('')}
+
+function renderRecent(){const rows=[...orders].slice(0,6);$('recentOrders').innerHTML=rows.length?rows.map(o=>`<tr><td><b>${safe(publicOrderId(o))}</b><br><small class="muted">${dateTimeText(o)}</small></td><td>${safe(val(o,'customerName','name')||'—')}</td><td>${money(val(o,'total','totalAmount','amount'))}</td><td><span class="badge">${safe(val(o,'status','orderStatus')||'Pending')}</span></td></tr>`).join(''):'<tr><td colspan="4" class="empty">No orders recorded yet.</td></tr>'}
+
+function renderOrderSummary(){const counts={Pending:0,Confirmed:0,Processing:0,Shipped:0,Delivered:0,Cancelled:0};orders.forEach(o=>{const s=val(o,'status','orderStatus')||'Pending';counts[counts[s]!==undefined?s:'Pending']++});$('orderSummary').innerHTML=Object.entries(counts).map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #29272a;font-size:12px"><span>${k}</span><b>${v}</b></div>`).join('')}
+
+function renderSalesChart(){const chart=$('salesChart');if(!chart)return;const now=new Date(),months=[];for(let i=5;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push({label:d.toLocaleDateString('en',{month:'short'}),month:d.getMonth(),year:d.getFullYear(),value:0})}orders.forEach(o=>{const raw=val(o,'createdAt','date','orderDate');let d;try{d=raw?.toDate?raw.toDate():new Date(raw)}catch{};const m=months.find(x=>d&&!isNaN(d)&&x.month===d.getMonth()&&x.year===d.getFullYear());if(m&&String(val(o,'status','orderStatus')).toLowerCase()!=='cancelled')m.value+=Number(val(o,'total','totalAmount','amount')||0)});const max=Math.max(1,...months.map(m=>m.value));chart.innerHTML=months.map(m=>`<div class="bar" style="height:${Math.max(4,m.value/max*100)}%" title="${money(m.value)}"><span>${m.label}</span></div>`).join('')}
+
+function fillCategoryOptions(){$('productCategoryFilter').innerHTML='<option value="">All categories</option>'+STORE_CATEGORIES.map(c=>`<option>${safe(c)}</option>`).join('')}
+
+function normalizeProductColor(c){if(typeof c==='string')return {name:c,images:[],img:'',image:''};const name=String(c?.name||c?.colorName||c?.color||'').trim();const imgs=Array.isArray(c?.images)?c.images.filter(Boolean):[];const image=String(c?.img||c?.image||c?.imageUrl||imgs[0]||'');return {name,images:[...new Set([...imgs,...(image?[image]:[])])],img:image,image};}
+function renderProductColorRows(){const host=$('productColorRows');if(!host)return;if(!prodColorRows.length)prodColorRows=[{name:'',image:'',file:null}];host.innerHTML=prodColorRows.map((c,i)=>`<div class="color-admin-row" data-color-row="${i}"><input type="text" value="${safe(c.name)}" placeholder="Color name e.g. Black" oninput="updateProductColorName(${i},this.value)"><div><input type="file" accept="image/png,image/jpeg,image/webp" onchange="selectProductColorImage(${i},this)"><div>${c.image?`<img class="color-admin-preview" src="${safe(c.image)}" alt="${safe(c.name||'Color')} photo">`:''}${c.file?`<span class="muted">New photo selected</span>`:'<small class="muted">Photo optional · max 5 MB</small>'}</div></div><button type="button" class="btn small danger" onclick="removeProductColorRow(${i})">Remove</button></div>`).join('')}
+window.addProductColorRow=()=>{prodColorRows.push({name:'',image:'',file:null});renderProductColorRows()};
+window.updateProductColorName=(i,value)=>{if(prodColorRows[i])prodColorRows[i].name=value};
+window.selectProductColorImage=(i,input)=>{const file=input.files?.[0];if(!file)return;if(!file.type.startsWith('image/'))return toast('Please choose an image file.',true);if(file.size>5*1024*1024){input.value='';return toast('Color photo must be 5 MB or smaller.',true)}if(prodColorRows[i]){prodColorRows[i].file=file;renderProductColorRows()}};
+window.removeProductColorRow=i=>{prodColorRows.splice(i,1);renderProductColorRows()};
+async function saveProductColors(){const result=[];for(let i=0;i<prodColorRows.length;i++){const c=prodColorRows[i],name=String(c.name||'').trim();if(!name)continue;let image=c.image||'';if(c.file){toast('Uploading '+name+' color photo…');image=await uploadToCloudinary(c.file)}result.push({name,images:image?[image]:[],img:image,image})}return result;}
+
+window.openProductForm=()=>{clearProductForm();$('productModalTitle').textContent='Add Product';$('productModal').style.display='block'};
+
+window.closeProductForm=()=>{$('productModal').style.display='none'};
+
+function clearProductForm(){['prodId','prodName','prodCategory','prodPrice','prodOriginal','prodBrand','prodImage','prodSizes','prodDescription'].forEach(id=>$(id).value='');$('prodSizeCategory').value='';$('prodCustomSizeInput').value='';fillProductSizeCategories();$('prodStock').value=0;$('prodActive').value='true';$('prodFeatured').value='false';$('prodImageFile').value='';prodMedia=[];prodColorRows=[{name:'',image:'',file:null}];renderProductColorRows();renderProdMedia();renderProductSizeOptions([])}
+
+window.editProduct=(id)=>{const p=products.find(x=>x.id===id);if(!p)return;$('productModalTitle').textContent='Edit Product';$('prodId').value=id;$('prodName').value=val(p,'name','title');setProdCategory(p.category);$('prodPrice').value=val(p,'price','sellingPrice');$('prodOriginal').value=val(p,'originalPrice','mrp');$('prodStock').value=val(p,'stock','quantity')??0;$('prodBrand').value=p.brand||'';$('prodImage').value='';const oldSizes=Array.isArray(p.sizes)?p.sizes.map(String):String(p.sizes||'').split(',').map(x=>x.trim()).filter(Boolean);$('prodSizeCategory').value=p.sizeCategoryId||'';$('prodSizes').value='';$('prodCustomSizeInput').value='';fillProductSizeCategories();renderProductSizeOptions(oldSizes);prodColorRows=(Array.isArray(p.colors)?p.colors:typeof p.colors==='string'?p.colors.split(','):[]).map(normalizeProductColor).map(c=>({name:c.name,image:c.img||c.image||c.images?.[0]||'',file:null}));renderProductColorRows();$('prodDescription').value=val(p,'description','details');$('prodActive').value=p.active===false?'false':'true';$('prodFeatured').value=p.featured?'true':'false';{const imgs=Array.isArray(p.images)&&p.images.length?p.images:[val(p,'image','imageUrl','photo')].filter(Boolean);prodMedia=imgs.map(u=>({url:u}));renderProdMedia()}$('productModal').style.display='block'};
+
+window.removeProduct=async(id)=>{if(!confirm('Delete this product permanently?'))return;try{await deleteDoc(doc(db,'products',id));products=products.filter(p=>p.id!==id);renderAll();toast('Product deleted.')}catch(e){toast('Delete failed: '+e.message,true)}};
+
+window.saveProduct=async()=>{const name=$('prodName').value.trim(),price=Number($('prodPrice').value);if(!name||!Number.isFinite(price)){toast('Product name and valid price are required.',true);return}if(!$('prodCategory').value){toast('Please select a category.',true);return}try{const urls=[];const pending=prodMedia.filter(m=>m.file).length;let n=0;for(const m of prodMedia){if(m.url){urls.push(m.url)}else{n++;toast('Uploading photo '+n+' of '+pending+'…');urls.push(await uploadToCloudinary(m.file))}}const colors=await saveProductColors();const data={name,category:$('prodCategory').value,price,originalPrice:Number($('prodOriginal').value)||0,stock:Number($('prodStock').value)||0,brand:$('prodBrand').value.trim(),image:urls[0]||'',images:urls,sizeCategoryId:$('prodSizeCategory').value,sizeCategory:sizeCategories.find(c=>c.id===$('prodSizeCategory').value)?.name||'',sizes:[...new Set([...([...document.querySelectorAll('.product-size-check:checked')].map(x=>x.value)),...$('prodSizes').value.split(',').map(x=>x.trim()).filter(Boolean)])],colors,description:$('prodDescription').value.trim(),active:$('prodActive').value==='true',featured:$('prodFeatured').value==='true',updatedAt:serverTimestamp()};const id=$('prodId').value;if(id)await updateDoc(doc(db,'products',id),data);else{data.createdAt=serverTimestamp();await addDoc(collection(db,'products'),data)}closeProductForm();await refreshAll();toast('Product saved to Firebase.')}catch(e){toast('Product save failed: '+e.message,true);console.error(e)}};
+
+window.previewFile=(input,target)=>{const f=input.files[0];if(!f)return;const img=$(target);img.src=URL.createObjectURL(f);img.style.display='block'};
+
+window.saveHero=async()=>{const f=$('heroFile').files[0];if(!f){toast('Please choose a photo or video first.',true);return}try{toast('Uploading to Cloudinary…');const m=await uploadMediaSetting(f);await writeSetting('collectionHero',{mediaType:m.mediaType,videoUrl:m.videoUrl,posterUrl:m.posterUrl,backgroundUrl:m.mediaType==='video'?m.posterUrl:m.imageUrl,updatedBy:'temporary-no-login-admin'});heroPreviewUrl=m.imageUrl||m.posterUrl;$('heroFile').value='';showMediaPreview('heroPreviewBox',m.videoUrl||m.imageUrl,m.mediaType,m.posterUrl);toast('Collection hero published.')}catch(e){toast('Upload failed: '+e.message,true)}};
+
+window.removeHero=async()=>{if(!confirm('Remove the collection page photo/video?'))return;try{await writeSetting('collectionHero',{mediaType:'',videoUrl:'',posterUrl:'',backgroundUrl:'',updatedBy:'temporary-no-login-admin'});$('heroFile').value='';showMediaPreview('heroPreviewBox','');toast('Collection photo/video removed.')}catch(e){toast('Could not remove: '+e.message,true)}};
+
+window.saveHomeBanner=async()=>{try{const data={title:$('homeBannerTitle').value.trim(),subtitle:$('homeBannerText').value.trim(),updatedBy:'temporary-no-login-admin'};const f=$('homeBannerFile').files[0];let m=null;if(f){toast('Uploading to Cloudinary…');m=await uploadMediaSetting(f);Object.assign(data,{mediaType:m.mediaType,imageUrl:m.imageUrl,videoUrl:m.videoUrl,posterUrl:m.posterUrl})}await writeSetting('homeBanner',data);if(m){$('homeBannerFile').value='';showMediaPreview('homeBannerPreviewBox',m.videoUrl||m.imageUrl,m.mediaType,m.posterUrl)}toast('Homepage banner saved.')}catch(e){toast(e.message,true)}};
+
+window.removeHomeMedia=async()=>{if(!confirm('Remove the homepage photo/video? The default hero will be shown.'))return;try{await writeSetting('homeBanner',{mediaType:'',imageUrl:'',videoUrl:'',posterUrl:''});$('homeBannerFile').value='';showMediaPreview('homeBannerPreviewBox','');toast('Homepage photo/video removed.')}catch(e){toast(e.message,true)}};
+
+window.saveAnnouncement=async()=>{try{await writeSetting('announcement',{text:$('announcementText').value.trim(),enabled:$('announcementEnabled').value==='true'});toast('Announcement saved.')}catch(e){toast(e.message,true)}};
+
+window.openCouponForm=()=>{$('couponCode').value='';$('couponDiscount').value='';$('couponMin').value='0';$('couponExpiry').value='';$('couponActive').value='true';$('couponModal').style.display='block'};
+
+window.closeCouponForm=()=>{$('couponModal').style.display='none'};
+
+window.saveCoupon=async()=>{const code=$('couponCode').value.trim().toUpperCase(),discount=Number($('couponDiscount').value);if(!code||discount<1||discount>100){toast('Enter a coupon code and discount between 1–100%.',true);return}try{await addDoc(collection(db,'coupons'),{code,discount,minimumOrder:Number($('couponMin').value)||0,expiry:$('couponExpiry').value,active:$('couponActive').value==='true',createdAt:serverTimestamp()});closeCouponForm();await refreshAll();toast('Coupon created.')}catch(e){toast('Could not create coupon: '+e.message,true)}};
+
+window.deleteCoupon=async(id)=>{if(!confirm('Delete this coupon?'))return;try{await deleteDoc(doc(db,'coupons',id));coupons=coupons.filter(x=>x.id!==id);renderCoupons();toast('Coupon deleted.')}catch(e){toast(e.message,true)}};
+
+async function loadSettings(){try{const [s,h,b,a,p]=await Promise.all([readSetting('general'),readSetting('collectionHero'),readSetting('homeBanner'),readSetting('announcement'),readSetting('payment')]);$('setStoreName').value=s.storeName||'Solanki Shoes';$('setPhone').value=s.phone||'';$('setWhatsapp').value=s.whatsapp||'';$('setEmail').value=s.email||'';$('setAddress').value=s.address||'';$('setInstagram').value=s.instagram||'';$('setMap').value=s.mapUrl||'';if(b.mediaType==='video'&&b.videoUrl)showMediaPreview('homeBannerPreviewBox',b.videoUrl,'video',b.posterUrl);else if(b.imageUrl)showMediaPreview('homeBannerPreviewBox',b.imageUrl,'image');$('homeBannerTitle').value=b.title||'';$('homeBannerText').value=b.subtitle||'';$('announcementText').value=a.text||'';$('announcementEnabled').value=a.enabled===false?'false':'true';$('paymentMethod').value=p.method||'Cash on Delivery';$('paymentProvider').value=p.provider||'';$('paymentNote').value=p.note||'';if(h.mediaType==='video'&&h.videoUrl){showMediaPreview('heroPreviewBox',h.videoUrl,'video',h.posterUrl||h.backgroundUrl)}else if(h.backgroundUrl){heroPreviewUrl=h.backgroundUrl;showMediaPreview('heroPreviewBox',h.backgroundUrl,'image')}}catch(e){console.warn('Settings load:',e)}}
+
+window.saveSettings=async()=>{try{await writeSetting('general',{storeName:$('setStoreName').value.trim(),phone:$('setPhone').value.trim(),whatsapp:$('setWhatsapp').value.trim(),email:$('setEmail').value.trim(),address:$('setAddress').value.trim(),instagram:$('setInstagram').value.trim(),mapUrl:$('setMap').value.trim()});toast('Store information saved.')}catch(e){toast(e.message,true)}};
+
+window.savePaymentSettings=async()=>{try{await writeSetting('payment',{method:$('paymentMethod').value,provider:$('paymentProvider').value.trim(),note:$('paymentNote').value.trim()});toast('Payment preferences saved. This does not connect a gateway.')}catch(e){toast(e.message,true)}};
+
+window.exportCSV=(type)=>{const data=({products,orders,customers,coupons})[type]||[];if(!data.length)return toast('No '+type+' data to export.',true);const keys=[...new Set(data.flatMap(x=>Object.keys(x)))];const csv=[keys.join(','),...data.map(row=>keys.map(k=>'"'+String(row[k]?.toDate?row[k].toDate().toISOString():Array.isArray(row[k])?row[k].join('|'):row[k]??'').replace(/"/g,'""')+'"').join(','))].join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`solanki-${type}.csv`;a.click();URL.revokeObjectURL(a.href);toast(type+' CSV downloaded.')};
+
+
+// Firebase Email/Password admin login
+const loginForm = document.getElementById('adminLoginForm');
+const loginButton = document.getElementById('adminLoginButton');
+const loginError = document.getElementById('loginError');
+
+loginForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  loginError.style.display = 'none';
+  loginButton.disabled = true;
+  loginButton.textContent = 'Signing in…';
+  try {
+    const email = $('adminEmail').value.trim();
+    const password = $('adminPassword').value;
+    await signInWithEmailAndPassword(auth, email, password);
+    $('adminPassword').value = '';
+  } catch (error) {
+    console.error('Admin login failed:', error);
+    loginError.textContent = error.code === 'auth/invalid-credential'
+      ? 'Email or password is incorrect.'
+      : error.code === 'auth/too-many-requests'
+        ? 'Too many attempts. Please wait and try again.'
+        : error.message || 'Login failed. Please try again.';
+    loginError.style.display = 'block';
+  } finally {
+    loginButton.disabled = false;
+    loginButton.textContent = 'Login Securely';
+  }
+});
+
+$('adminLogout').addEventListener('click', async () => {
+  try { await signOut(auth); }
+  catch (error) { toast('Could not sign out: ' + error.message, true); }
+});
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.body.classList.add('admin-authenticated');
+    $('signedInEmail').textContent = user.email || 'Admin signed in';
+    if (!window.__adminDataLoaded) {
+      window.__adminDataLoaded = true;
+      refreshAll();
+    }
+  } else {
+    document.body.classList.remove('admin-authenticated');
+    window.__adminDataLoaded = false;
+    $('adminEmail').value = '';
+    $('adminPassword').value = '';
+  }
+});
+
+</script>
+
+</body>
+
+</html>
